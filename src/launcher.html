@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <style>
+    @font-face {
+      font-family: "default";
+      src: url('https://coldnova.xyz/Tilt.ttf');
+    }
+
+    body {
+      background-color: #040716;
+    }
+
+    .text {
+      color: white;
+      font-family: 'default';
+      margin-top: 100px;
+    }
+
+    .loading {
+      width: 70px;
+      height: 70px;
+      border: 6px solid aqua;
+      border-radius: 4px;
+      box-shadow: 0 0 8px aqua, 0 0 8px aqua inset;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      animation: loading 2s infinite, rainbow 4s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+      }
+
+      33% {
+        transform: rotateX(180deg) rotateY(0) rotateZ(0);
+      }
+
+      67% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(0);
+      }
+
+      100% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+      }
+    }
+
+    @keyframes rainbow {
+      0% {
+        border-color: red;
+        box-shadow: 0 0 8px red, 0 0 8px red inset;
+      }
+
+      16% {
+        border-color: orange;
+        box-shadow: 0 0 8px orange, 0 0 8px orange inset;
+      }
+
+      33% {
+        border-color: yellow;
+        box-shadow: 0 0 8px yellow, 0 0 8px yellow inset;
+      }
+
+      50% {
+        border-color: green;
+        box-shadow: 0 0 8px green, 0 0 8px green inset;
+      }
+
+      66% {
+        border-color: blue;
+        box-shadow: 0 0 8px blue, 0 0 8px blue inset;
+      }
+
+      83% {
+        border-color: indigo;
+        box-shadow: 0 0 8px indigo, 0 0 8px indigo inset;
+      }
+
+      100% {
+        border-color: violet;
+        box-shadow: 0 0 8px violet, 0 0 8px violet inset;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <h1 class="text">Please wait for the game to load</h1>
+  </center>
+  <div class="loading"></div>
+
+  <script>
+    async function openSite() {
+      try {
+        const res = await fetch("https://raw.githubusercontent.com/Jalvie/Sheets-HTML/refs/heads/main/index.html");
+        const html = await res.text();
+        const popup = window.open();
+        if (!popup) {
+          alert("Popup blocked. Please allow popups for this site.");
+        } else {
+          setTimeout(() => {
+            popup.document.open();
+            popup.document.write(html);
+            popup.document.close();
+          }, 2500);
+        }
+      } catch (e) {
+        console.error("Error fetching content:", e);
+        alert("Failed to load content. Please try again.");
+      }
+    }
+    openSite();
+  </script>
+</body>
+
+</html>

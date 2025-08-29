@@ -1,183 +1,107 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Ultraviolet | Sophisticated Web Proxy</title>
-    <meta
-      name="description"
-      content="Ultraviolet is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!"
-    />
-    <meta
-      name="keywords"
-      content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#434c5e"
-    />
-    <meta name="googlebot" content="index, follow, snippet" />
-    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/favicon.ico" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/index.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux@latest/dist/index.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mercuryworkshop/epoxy-tls@latest/client/index.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Definitely-Science@main/public/eclipse/uv/uv.bundle.js" defer></script>
-    <script>
-      console.log("Service worker registration starting...");
-      try {
-        const swUrl = "https://raw.githubusercontent.com/titaniumnetwork-dev/Ultraviolet/refs/heads/main/src/uv.sw.js";
-        console.log("Service worker URL:", swUrl);
-        
-        // Register the service worker using the relative URL
-        navigator.serviceWorker.register(swUrl)
-          .then(registration => {
-            console.log("Service worker registered successfully:", registration);
-            console.log("Service worker scope:", registration.scope);
-          })
-          .catch(error => {
-            console.error("Service worker registration failed:", error);
-            console.error("Error details:", {
-              name: error.name,
-              message: error.message,
-              stack: error.stack
-            });
-          });
-      } catch (error) {
-        console.error("Error in service worker setup:", error);
-      }
-    </script>
-    <script>
-      console.log("Loading register-sw.js script...");
-      // Add debugging for any URL construction
-      window.addEventListener('error', function(e) {
-        console.error("Global error caught:", e.error);
-        console.error("Error message:", e.message);
-        console.error("Error filename:", e.filename);
-        console.error("Error lineno:", e.lineno);
-        console.error("Error colno:", e.colno);
-      });
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/register-sw.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/search.js" defer></script>
-    <script>
-      console.log("Loading main index.js script...");
-      // Monitor for any URL construction or navigation
-      const originalPushState = history.pushState;
-      const originalReplaceState = history.replaceState;
-      
-      history.pushState = function(...args) {
-        console.log("pushState called with:", args);
-        console.trace("pushState stack trace");
-        return originalPushState.apply(this, args);
-      };
-      
-      history.replaceState = function(...args) {
-        console.log("replaceState called with:", args);
-        console.trace("replaceState stack trace");
-        return originalReplaceState.apply(this, args);
-      };
-      
-      // Monitor for any location changes
-      let currentLocation = window.location.href;
-      setInterval(() => {
-        if (window.location.href !== currentLocation) {
-          console.log("Location changed from:", currentLocation, "to:", window.location.href);
-          currentLocation = window.location.href;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColdNova Fullscreen Proxy</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #proxy-container {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      box-sizing: border-box;
+    }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading ColdNova...</div>
+  <div id="proxy-container"></div>
+
+  <script>
+    const container = document.getElementById('proxy-container');
+    const loading = document.getElementById('loading');
+    const targetUrl = 'https://coldnova.xyz/';
+
+    // Rewrite relative URLs in the fetched HTML
+    function rewriteUrls(doc, baseUrl) {
+      const elements = doc.querySelectorAll('[href], [src]');
+      elements.forEach(el => {
+        if (el.hasAttribute('href')) {
+          el.href = new URL(el.getAttribute('href'), baseUrl).href;
         }
-      }, 100);
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/index.js" defer></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is Ultraviolet (Web Proxy)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers and more!"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do I unblock sites using Ultraviolet?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Simply head to an official site featuring Ultraviolet such as Holy Unblocker or Incognito! You can also self-host Ultraviolet on your own web server for maximum privacy."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What if Ultraviolet is blocked or not working?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Join the Titanium Network Discord at discord.gg/unblock!"
-            }
-          }
-        ]
+        if (el.hasAttribute('src')) {
+          el.src = new URL(el.getAttribute('src'), baseUrl).href;
+        }
+      });
+
+      // Intercept links to stay in the proxy
+      doc.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          loadPage(a.href);
+        });
+      });
+    }
+
+    async function loadPage(url) {
+      try {
+        loading.style.display = 'block';
+        container.innerHTML = '';
+        const response = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        rewriteUrls(doc, url);
+
+        // Inject external CSS
+        const stylesheets = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
+        stylesheets.forEach(link => {
+          const newLink = document.createElement('link');
+          newLink.rel = 'stylesheet';
+          newLink.href = link.href;
+          document.head.appendChild(newLink);
+        });
+
+        // Inject inline styles
+        const inlineStyles = Array.from(doc.querySelectorAll('style'));
+        inlineStyles.forEach(style => {
+          const newStyle = document.createElement('style');
+          newStyle.textContent = style.textContent;
+          document.head.appendChild(newStyle);
+        });
+
+        // Append body content to container
+        Array.from(doc.body.children).forEach(child => container.appendChild(child));
+
+      } catch (err) {
+        container.innerHTML = `<p style="color:red;">Failed to load page: ${err.message}</p>`;
+        console.error(err);
+      } finally {
+        loading.style.display = 'none';
       }
-    </script>
-  </head>
+    }
 
-  <body>
-    <div
-      title="Ultraviolet Logo"
-      class="flex-center logo-wrapper header-center"
-    >
-      <img class="logo" src="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/uv.png" alt="Ultraviolet" />
-      <h1>Ultraviolet | TN</h1>
-    </div>
-    <div class="flex-center desc left-margin">
-      <p>
-        Ultraviolet is highly sophisticated proxy used for evading internet
-        censorship.
-      </p>
-    </div>
-
-    <form id="uv-form" class="flex-center">
-      <input
-        id="uv-search-engine"
-        value="https://www.google.com/search?q=%s"
-        type="hidden"
-      />
-      <input id="uv-address" type="text" placeholder="Search the web freely" />
-    </form>
-    <div class="desc left-margin">
-      <p id="uv-error"></p>
-      <pre id="uv-error-code"></pre>
-    </div>
-    <footer>
-      <div>
-        <a
-          title="The TitaniumNetwork GitHub organization"
-          href="https://github.com/titaniumnetwork-dev"
-          >TitaniumNetwork</a
-        >
-        <a title="The TitaniumNetwork Discord" href="https://discord.gg/unblock"
-          >Discord</a
-        >
-        <a
-          title="The TompHTTP GitHub organization"
-          href="https://github.com/tomphttp"
-          >TompHTTP</a
-        >
-        <a
-          title="The official deployment repository for Ultraviolet"
-          href="https://github.com/titaniumnetwork-dev/Ultraviolet-App"
-          >GitHub</a
-        >
-        <a title="License information" href="https://cdn.jsdelivr.net/gh/titaniumnetwork-dev/Ultraviolet-Static@main/public/credits.html">Credits</a>
-      </div>
-      <div>
-        <span>Ultraviolet &copy; TN 2023</span>
-      </div>
-    </footer>
-    <iframe style="display: none;" id="uv-frame"></iframe>
-  </body>
+    // Always load ColdNova on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadPage(targetUrl);
+    });
+  </script>
+</body>
 </html>
